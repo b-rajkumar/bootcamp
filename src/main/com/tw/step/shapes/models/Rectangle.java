@@ -1,4 +1,6 @@
-package com.tw.step.shapes;
+package com.tw.step.shapes.models;
+
+import com.tw.step.shapes.exceptions.InvalidDimensionsException;
 
 public class Rectangle {
   private final double length;
