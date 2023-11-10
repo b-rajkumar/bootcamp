@@ -1,4 +1,4 @@
-package com.tw.step.shapes.exceptions;
+package com.tw.step.math.exceptions;
 
 public class InvalidDimensionsException extends Exception {
   public final double length;

@@ -1,7 +1,7 @@
-package com.tw.step.shapes.models;
+package com.tw.step.math.models;
 
-import com.tw.step.shapes.exceptions.InvalidDimensionsException;
-import com.tw.step.shapes.interfaces.TwoDimensionalShape;
+import com.tw.step.math.exceptions.InvalidDimensionsException;
+import com.tw.step.math.interfaces.TwoDimensionalShape;
 
 public class Rectangle implements TwoDimensionalShape {
   private final double length;

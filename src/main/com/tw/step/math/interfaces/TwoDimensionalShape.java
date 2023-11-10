@@ -1,4 +1,4 @@
-package com.tw.step.shapes.interfaces;
+package com.tw.step.math.interfaces;
 
 public interface TwoDimensionalShape {
   double area();
