@@ -30,6 +30,7 @@ public class SquareTest {
     );
 
     assertEquals(-4, exception.length);
+    assertEquals(-4, exception.width);
   }
 
 }
