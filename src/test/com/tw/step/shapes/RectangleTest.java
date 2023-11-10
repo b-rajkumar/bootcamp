@@ -49,4 +49,16 @@ class RectangleTest {
 
     assertEquals(10.0, square.perimeter());
   }
+
+  @Test
+  void shouldBeASquare() throws InvalidDimensionsException {
+    Rectangle square = Rectangle.createSquare(2.5);
+    assertTrue(square.isSquare());
+  }
+
+  @Test
+  void shouldNotBeASquare() throws InvalidDimensionsException {
+    Rectangle r = Rectangle.create(4, 2);
+    assertTrue(!r.isSquare());
+  }
 }

@@ -22,6 +22,10 @@ public class Rectangle implements TwoDimensionalShape {
     return 2 * (this.length + this.width);
   }
 
+  public boolean isSquare() {
+    return this.length == this.width;
+  }
+
   public static Rectangle create(double length, double width) throws InvalidDimensionsException {
     boolean isValidLength = length >= 0;
     boolean isValidWidth = width >= 0;
@@ -34,5 +38,4 @@ public class Rectangle implements TwoDimensionalShape {
   public static Rectangle createSquare(double side) throws InvalidDimensionsException {
     return create(side, side);
   }
-
 }
