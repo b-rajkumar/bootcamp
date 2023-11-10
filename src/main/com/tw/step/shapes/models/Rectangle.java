@@ -1,8 +1,9 @@
 package com.tw.step.shapes.models;
 
 import com.tw.step.shapes.exceptions.InvalidDimensionsException;
+import com.tw.step.shapes.interfaces.TwoDimensionalShape;
 
-public class Rectangle {
+public class Rectangle implements TwoDimensionalShape {
   private final double length;
   private final double width;
 
@@ -20,10 +21,12 @@ public class Rectangle {
     throw new InvalidDimensionsException(length, width);
   }
 
+  @Override
   public double area() {
     return this.length * this.width;
   }
 
+  @Override
   public double perimeter() {
     return 2 * (this.length + this.width);
   }

@@ -24,7 +24,10 @@ public class SquareTest {
 
   @Test
   void shouldThrowExceptionForNegativeSide() {
-    InvalidDimensionsException exception = assertThrows(InvalidDimensionsException.class, () -> Square.create(-4));
+    InvalidDimensionsException exception = assertThrows(
+        InvalidDimensionsException.class,
+        () -> Square.create(-4)
+    );
 
     assertEquals(-4, exception.length);
   }
