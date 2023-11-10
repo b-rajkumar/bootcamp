@@ -8,9 +8,9 @@ class RectangleTest {
 
   @Test
   void shouldCalculateTheArea() throws InvalidDimensionsException {
-    Rectangle r = Rectangle.create(4, 2);
+    Rectangle r = Rectangle.create(4.1, 2.2);
 
-    assertEquals(8, r.area());
+    assertEquals(9.02, r.area());
   }
 
   @Test
@@ -29,6 +29,13 @@ class RectangleTest {
     });
 
     assertEquals(-1, exception.width);
+  }
+
+  @Test
+  void shouldCalculateThePerimeter() throws InvalidDimensionsException {
+    Rectangle r = Rectangle.create(4, 2);
+
+    assertEquals(12, r.perimeter());
   }
 
 }

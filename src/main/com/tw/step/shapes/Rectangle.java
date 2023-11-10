@@ -9,7 +9,7 @@ public class Rectangle {
     this.width = width;
   }
 
-  public static Rectangle create(int length, int width) throws InvalidDimensionsException {
+  public static Rectangle create(double length, double width) throws InvalidDimensionsException {
     boolean isValidLength = length >= 0;
     boolean isValidWidth = width >= 0;
 
@@ -22,4 +22,7 @@ public class Rectangle {
     return this.length * this.width;
   }
 
+  public double perimeter() {
+    return 2 * (this.length + this.width);
+  }
 }

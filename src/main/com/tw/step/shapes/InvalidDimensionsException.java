@@ -1,10 +1,10 @@
 package com.tw.step.shapes;
 
 public class InvalidDimensionsException extends Exception {
-  public final int length;
-  public final int width;
+  public final double length;
+  public final double width;
 
-  public InvalidDimensionsException(int length, int width) {
+  public InvalidDimensionsException(double length, double width) {
     super("Dimensions can't be Negative");
     this.length = length;
     this.width = width;
