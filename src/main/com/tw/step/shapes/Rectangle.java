@@ -1,23 +1,24 @@
 package com.tw.step.shapes;
 
 public class Rectangle {
-  private final int length;
-  private final int width;
+  private final double length;
+  private final double width;
 
-  public Rectangle(int length, int width) {
+  private Rectangle(double length, double width) {
     this.length = length;
     this.width = width;
   }
 
-  public static void main(String[] args) {
-    System.out.println("hello");
+  public static Rectangle create(int length, int width) throws InvalidDimensionsException {
+    boolean isValidLength = length >= 0;
+    boolean isValidWidth = width >= 0;
+
+    if (isValidLength && isValidWidth) return new Rectangle(length, width);
+
+    throw new InvalidDimensionsException(length, width);
   }
 
-  public static Rectangle create(int length, int width) {
-    return new Rectangle(length, width);
-  }
-
-  public int area() {
+  public double area() {
     return this.length * this.width;
   }
 
