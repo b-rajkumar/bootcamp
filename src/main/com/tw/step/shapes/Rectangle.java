@@ -13,7 +13,12 @@ public class Rectangle {
     System.out.println("hello");
   }
 
+  public static Rectangle create(int length, int width) {
+    return new Rectangle(length, width);
+  }
+
   public int area() {
     return this.length * this.width;
   }
+
 }
