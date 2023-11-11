@@ -13,11 +13,18 @@ class FeetTest {
   }
 
   @Test
-  void shouldConvertToInches() throws InvalidMeasurementException {
+  void shouldConvertToStandard() throws InvalidMeasurementException {
     Feet oneFeet = Feet.initiate(1);
-    Inch twelveInches = new Inch(12);
-    Inch oneFeetInInches = oneFeet.toInches();
+    MilliMeter threeHundredFour = new MilliMeter(304.8);
 
-    assertEquals(oneFeetInInches, twelveInches);
+    assertEquals(oneFeet.toStandard(), threeHundredFour);
+  }
+
+  @Test
+  void oneFeetShouldBeEqualToTwelveInches() throws InvalidMeasurementException {
+    Feet oneFeet = Feet.initiate(1);
+    Inch twelveInches = Inch.initiate(12);
+
+    assertTrue(oneFeet.isEqual(twelveInches));
   }
 }

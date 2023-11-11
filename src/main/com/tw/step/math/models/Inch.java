@@ -1,24 +1,21 @@
 package com.tw.step.math.models;
 
-import java.util.Objects;
+import com.tw.step.math.exceptions.InvalidMeasurementException;
 
-public class Inch {
-  private final int value;
+public class Inch extends Length {
+  private final double value;
 
-  public Inch(int value) {
+  public Inch(double value) {
     this.value = value;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Inch inch = (Inch) o;
-    return this.value == inch.value;
+  public static Inch initiate(int value) throws InvalidMeasurementException {
+    if (value < 0) throw new InvalidMeasurementException(value);
+    return new Inch(value);
   }
 
   @Override
-  public int hashCode() {
-    return Objects.hash(this.value);
+  MilliMeter toStandard() {
+    return new MilliMeter(25.4 * this.value);
   }
 }

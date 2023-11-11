@@ -1,0 +1,6 @@
+Make a Length class as a base that can hold a value and have comparision methods, abstract toStandard()
+
+Test Cases:
+    Comparing one feet with 12 inches
+    Comparing one inch with 2.5 cm
+    Comparint one feet with 30 cm
