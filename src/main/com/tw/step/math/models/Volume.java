@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Volume {
   private final double value;
   private final Unit unit;
+  private static final Unit standardUnit = Unit.LITER;
 
   public Volume(double value, Unit unit) {
     this.value = value;
@@ -23,21 +24,23 @@ public class Volume {
       this.conversionFactor = conversionFactor;
     }
 
-    public double toStandard(double value) {
-      return value * this.conversionFactor;
+    public Volume toStandard(double value) {
+      double conversionFactor = this.conversionFactor / Volume.standardUnit.conversionFactor;
+
+      return new Volume(value * conversionFactor, Volume.standardUnit);
     }
   }
-  
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Volume volume = (Volume) o;
 
-    double v1 = this.unit.toStandard(this.value);
-    double v2 = volume.unit.toStandard(volume.value);
+    double v1 = this.unit.toStandard(this.value).value;
+    double v2 = volume.unit.toStandard(volume.value).value;
 
-    return Math.abs(v1 - v2) < 1;
+    return Math.abs(v1 - v2) < 0.1;
   }
 
   @Override
@@ -52,10 +55,10 @@ public class Volume {
   }
 
   public Volume add(Volume volume) throws InvalidMeasurementException {
-    double v1 = this.unit.toStandard(this.value);
-    double v2 = volume.unit.toStandard(volume.value);
+    double v1 = this.unit.toStandard(this.value).value;
+    double v2 = volume.unit.toStandard(volume.value).value;
 
-    return Volume.create(v1 + v2, Unit.LITER);
+    return Volume.create(v1 + v2, Volume.standardUnit);
   }
 
 }

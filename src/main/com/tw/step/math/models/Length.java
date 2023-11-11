@@ -7,6 +7,8 @@ import java.util.Objects;
 public class Length {
   private final double value;
   private final Unit unit;
+  private static final Unit standardUnit = Unit.INCH;
+
 
   private Length(double value, Unit unit) {
     this.value = value;
@@ -14,10 +16,10 @@ public class Length {
   }
 
   public enum Unit {
-    FEET(12),
-    INCH(1),
-    CENTIMETER(0.3937),
-    MILLIMETER(0.03937);
+    FEET(304.8),
+    INCH(25.4),
+    CENTIMETER(10),
+    MILLIMETER(1);
 
     private final double conversionFactor;
 
@@ -26,7 +28,9 @@ public class Length {
     }
 
     public Length toStandard(double value) {
-      return new Length(value * this.conversionFactor, this.INCH);
+      double conversionFactor = this.conversionFactor / Length.standardUnit.conversionFactor;
+
+      return new Length(value * conversionFactor, Length.standardUnit);
     }
   }
 
@@ -57,7 +61,7 @@ public class Length {
     double v1 = this.unit.toStandard(this.value).value;
     double v2 = length.unit.toStandard(length.value).value;
 
-    return Length.create(v1 + v2, Unit.INCH);
+    return Length.create(v1 + v2, Length.standardUnit);
   }
 
 }
