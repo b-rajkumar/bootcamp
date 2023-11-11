@@ -1,6 +1,7 @@
 package com.tw.step.math.models;
 
 import com.tw.step.math.exceptions.InvalidMeasurementException;
+import com.tw.step.math.exceptions.TypeMismatchException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,6 +28,22 @@ class LengthTest {
     Length fiveCentiMeters = Length.create(5, LengthUnit.CentiMeter);
 
     assertEquals(twoInches, fiveCentiMeters);
+  }
+
+  @Test
+  void shouldThrowExceptionForDifferentTypesOfLength() throws InvalidMeasurementException {
+    Length twoInches = Length.create(2, LengthUnit.Inch);
+    Length fourCentimeters = Length.create(4, LengthUnit.CentiMeter);
+
+    assertThrows(TypeMismatchException.class, () -> twoInches.add(fourCentimeters));
+  }
+
+  @Test
+  void shouldAddTwoLengths() throws InvalidMeasurementException, TypeMismatchException {
+    Length twoInches = Length.create(2, LengthUnit.Inch);
+    Length fourInches = Length.create(4, LengthUnit.Inch);
+
+    assertEquals(twoInches.add(twoInches), fourInches);
   }
 
 }

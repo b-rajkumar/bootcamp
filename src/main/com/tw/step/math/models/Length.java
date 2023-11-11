@@ -1,6 +1,7 @@
 package com.tw.step.math.models;
 
 import com.tw.step.math.exceptions.InvalidMeasurementException;
+import com.tw.step.math.exceptions.TypeMismatchException;
 
 import java.util.Objects;
 
@@ -25,7 +26,6 @@ public class Length {
     return Math.abs(v1 - v2) < 1;
   }
 
-
   @Override
   public int hashCode() {
     return Objects.hash(this.value, this.lengthUnit);
@@ -35,5 +35,10 @@ public class Length {
     if (value < 0) throw new InvalidMeasurementException(value);
 
     return new Length(value, lengthUnit);
+  }
+
+  public Length add(Length length) throws InvalidMeasurementException, TypeMismatchException {
+    if (this.lengthUnit != length.lengthUnit) throw new TypeMismatchException();
+    return Length.create(this.value + length.value, this.lengthUnit);
   }
 }
