@@ -1,17 +1,33 @@
 package com.tw.step.math.models;
 
 import com.tw.step.math.exceptions.InvalidMeasurementException;
-import com.tw.step.math.exceptions.TypeMismatchException;
 
 import java.util.Objects;
 
 public class Length {
   private final double value;
-  private final LengthUnit unit;
+  private final Unit unit;
 
-  private Length(double value, LengthUnit unit) {
+  private Length(double value, Unit unit) {
     this.value = value;
     this.unit = unit;
+  }
+
+  public enum Unit {
+    FEET(12),
+    INCH(1),
+    CENTIMETER(0.3937),
+    MILLIMETER(0.03937);
+
+    private final double conversionFactor;
+
+    Unit(double conversionFactor) {
+      this.conversionFactor = conversionFactor;
+    }
+
+    public Length toStandard(double value) {
+      return new Length(value * this.conversionFactor, this.INCH);
+    }
   }
 
   @Override
@@ -20,8 +36,8 @@ public class Length {
     if (o == null || getClass() != o.getClass()) return false;
     Length length = (Length) o;
 
-    double v1 = this.unit.toStandard(this.value);
-    double v2 = length.unit.toStandard(length.value);
+    double v1 = this.unit.toStandard(this.value).value;
+    double v2 = length.unit.toStandard(length.value).value;
 
     return Math.abs(v1 - v2) < 0.1;
   }
@@ -31,16 +47,17 @@ public class Length {
     return Objects.hash(this.value, this.unit);
   }
 
-  public static Length create(double value, LengthUnit lengthUnit) throws InvalidMeasurementException {
+  public static Length create(double value, Unit lengthUnit) throws InvalidMeasurementException {
     if (value < 0) throw new InvalidMeasurementException(value);
 
     return new Length(value, lengthUnit);
   }
 
   public Length add(Length length) throws InvalidMeasurementException {
-    double v1 = this.unit.toStandard(this.value);
-    double v2 = length.unit.toStandard(length.value);
+    double v1 = this.unit.toStandard(this.value).value;
+    double v2 = length.unit.toStandard(length.value).value;
 
-    return Length.create(v1 + v2, LengthUnit.INCH);
+    return Length.create(v1 + v2, Unit.INCH);
   }
+
 }

@@ -6,13 +6,28 @@ import java.util.Objects;
 
 public class Volume {
   private final double value;
-  private final VolumeUnit unit;
+  private final Unit unit;
 
-  public Volume(double value, VolumeUnit unit) {
+  public Volume(double value, Unit unit) {
     this.value = value;
     this.unit = unit;
   }
 
+  public enum Unit {
+    GALLON(3.78),
+    LITER(1);
+
+    private final double conversionFactor;
+
+    Unit(double conversionFactor) {
+      this.conversionFactor = conversionFactor;
+    }
+
+    public double toStandard(double value) {
+      return value * this.conversionFactor;
+    }
+  }
+  
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -30,7 +45,7 @@ public class Volume {
     return Objects.hash(this.value, this.unit);
   }
 
-  public static Volume create(double value, VolumeUnit unit) throws InvalidMeasurementException {
+  public static Volume create(double value, Unit unit) throws InvalidMeasurementException {
     if (value < 0) throw new InvalidMeasurementException(value);
 
     return new Volume(value, unit);
@@ -40,6 +55,7 @@ public class Volume {
     double v1 = this.unit.toStandard(this.value);
     double v2 = volume.unit.toStandard(volume.value);
 
-    return Volume.create(v1 + v2, VolumeUnit.LITER);
+    return Volume.create(v1 + v2, Unit.LITER);
   }
+
 }
