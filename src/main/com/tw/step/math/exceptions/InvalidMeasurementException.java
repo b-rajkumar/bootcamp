@@ -1,9 +1,9 @@
 package com.tw.step.math.exceptions;
 
 public class InvalidMeasurementException extends Exception {
-  public final int value;
+  public final double value;
 
-  public InvalidMeasurementException(int value) {
+  public InvalidMeasurementException(double value) {
     super("Negative values not allowed");
     this.value = value;
   }
