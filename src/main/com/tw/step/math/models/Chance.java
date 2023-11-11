@@ -39,7 +39,9 @@ public class Chance {
   }
 
   public Chance or(Chance chance) throws InvalidRangeException {
-    Chance independentEventChance = this.and(chance);
-    return Chance.initiate(this.value + chance.value - independentEventChance.value);
+    Chance inverseOfC1 = this.inverse();
+    Chance inverseOfC2 = chance.inverse();
+
+    return inverseOfC1.and(inverseOfC2).inverse();
   }
 }
