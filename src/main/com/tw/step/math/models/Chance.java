@@ -1,6 +1,6 @@
 package com.tw.step.math.models;
 
-import com.tw.step.math.exceptions.InvalidRange;
+import com.tw.step.math.exceptions.InvalidRangeException;
 
 import java.util.Objects;
 
@@ -24,13 +24,22 @@ public class Chance {
     return Objects.hash(this.value);
   }
 
-  public static Chance initiate(double value) throws InvalidRange {
-    if (value < 0 || value > 1) throw new InvalidRange(value);
+  public static Chance initiate(double value) throws InvalidRangeException {
+    if (value < 0 || value > 1) throw new InvalidRangeException(value);
 
     return new Chance(value);
   }
 
-  public Chance inverse() throws InvalidRange {
-    return initiate(1 - this.value);
+  public Chance inverse() throws InvalidRangeException {
+    return Chance.initiate(1 - this.value);
+  }
+
+  public Chance and(Chance chance) throws InvalidRangeException {
+    return Chance.initiate(this.value * chance.value);
+  }
+
+  public Chance or(Chance chance) throws InvalidRangeException {
+    Chance independentEventChance = this.and(chance);
+    return Chance.initiate(this.value + chance.value - independentEventChance.value);
   }
 }
