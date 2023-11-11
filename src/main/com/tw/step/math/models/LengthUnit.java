@@ -1,10 +1,10 @@
 package com.tw.step.math.models;
 
 public enum LengthUnit {
-  FEET(304.8),
-  INCH(25.4),
-  CENTIMETER(10),
-  MILLIMETER(1);
+  FEET(12),
+  INCH(1),
+  CENTIMETER(0.3937),
+  MILLIMETER(0.03937);
 
   private final double conversionFactor;
 

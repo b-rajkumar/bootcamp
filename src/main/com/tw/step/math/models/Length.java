@@ -23,7 +23,7 @@ public class Length {
     double v1 = this.unit.toStandard(this.value);
     double v2 = length.unit.toStandard(length.value);
 
-    return Math.abs(v1 - v2) < 1;
+    return Math.abs(v1 - v2) < 0.1;
   }
 
   @Override
@@ -37,9 +37,10 @@ public class Length {
     return new Length(value, lengthUnit);
   }
 
-  public Length add(Length length) throws InvalidMeasurementException, TypeMismatchException {
-    if (this.unit != length.unit)
-      throw new TypeMismatchException(this.unit, length.unit);
-    return Length.create(this.value + length.value, this.unit);
+  public Length add(Length length) throws InvalidMeasurementException {
+    double v1 = this.unit.toStandard(this.value);
+    double v2 = length.unit.toStandard(length.value);
+
+    return Length.create(v1 + v2, LengthUnit.INCH);
   }
 }

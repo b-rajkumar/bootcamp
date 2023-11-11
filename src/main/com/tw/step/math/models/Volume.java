@@ -35,4 +35,11 @@ public class Volume {
 
     return new Volume(value, unit);
   }
+
+  public Volume add(Volume volume) throws InvalidMeasurementException {
+    double v1 = this.unit.toStandard(this.value);
+    double v2 = volume.unit.toStandard(volume.value);
+
+    return Volume.create(v1 + v2, VolumeUnit.LITER);
+  }
 }

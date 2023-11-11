@@ -29,22 +29,22 @@ class LengthTest {
     assertEquals(twoInches, fiveCentiMeters);
   }
 
-  @Test
-  void shouldThrowExceptionForDifferentTypesOfLength() throws InvalidMeasurementException {
-    Length twoInches = Length.create(2, LengthUnit.INCH);
-    Length fourMilliMeter = Length.create(4, LengthUnit.MILLIMETER);
-
-    TypeMismatchException e = assertThrows(TypeMismatchException.class, () -> twoInches.add(fourMilliMeter));
-    assertEquals(e.firstUnit, LengthUnit.INCH);
-    assertEquals(e.secondUnit, LengthUnit.MILLIMETER);
-  }
 
   @Test
-  void shouldAddTwoLengths() throws InvalidMeasurementException, TypeMismatchException {
+  void shouldAddTwoLengths() throws InvalidMeasurementException {
     Length twoInches = Length.create(2, LengthUnit.INCH);
     Length fourInches = Length.create(4, LengthUnit.INCH);
 
     assertEquals(twoInches.add(twoInches), fourInches);
+  }
+
+  @Test
+  void shouldAddTwoLengthsOfDifferentUnit() throws InvalidMeasurementException {
+    Length twoInches = Length.create(2, LengthUnit.INCH);
+    Length twoPointFiveCentimeters = Length.create(2.5, LengthUnit.CENTIMETER);
+    Length threeInches = Length.create(3, LengthUnit.INCH);
+
+    assertEquals(twoInches.add(twoPointFiveCentimeters), threeInches);
   }
 
 }
