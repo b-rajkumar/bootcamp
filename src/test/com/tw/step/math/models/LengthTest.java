@@ -9,22 +9,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class LengthTest {
   @Test
   void shouldThrowExceptionForNegativeValues() {
-    InvalidMeasurementException e = assertThrows(InvalidMeasurementException.class, () -> Length.create(-1, Length.Unit.FEET));
+    InvalidMeasurementException e = assertThrows(InvalidMeasurementException.class, () -> Length.create(-1, LengthUnit.FEET));
     assertEquals(e.value, -1);
   }
 
   @Test
   void oneFeetShouldBeEqualToTwelveInches() throws InvalidMeasurementException {
-    Length oneFeet = Length.create(1, Length.Unit.FEET);
-    Length twelveInches = Length.create(12, Length.Unit.INCH);
+    Length oneFeet = Length.create(1, LengthUnit.FEET);
+    Length twelveInches = Length.create(12, LengthUnit.INCH);
 
     assertEquals(oneFeet, twelveInches);
   }
 
   @Test
   void twoInchesShouldBeEqualToFiveCentiMeters() throws InvalidMeasurementException {
-    Length twoInches = Length.create(2, Length.Unit.INCH);
-    Length fiveCentiMeters = Length.create(5, Length.Unit.CENTIMETER);
+    Length twoInches = Length.create(2, LengthUnit.INCH);
+    Length fiveCentiMeters = Length.create(5, LengthUnit.CENTIMETER);
 
     assertEquals(twoInches, fiveCentiMeters);
   }
@@ -32,17 +32,17 @@ class LengthTest {
 
   @Test
   void shouldAddTwoLengths() throws InvalidMeasurementException {
-    Length twoInches = Length.create(2, Length.Unit.INCH);
-    Length fourInches = Length.create(4, Length.Unit.INCH);
+    Length twoInches = Length.create(2, LengthUnit.INCH);
+    Length fourInches = Length.create(4, LengthUnit.INCH);
 
     assertEquals(twoInches.add(twoInches), fourInches);
   }
 
   @Test
   void shouldAddTwoLengthsOfDifferentUnit() throws InvalidMeasurementException {
-    Length twoInches = Length.create(2, Length.Unit.INCH);
-    Length twoPointFiveCentimeters = Length.create(2.5, Length.Unit.CENTIMETER);
-    Length threeInches = Length.create(3, Length.Unit.INCH);
+    Length twoInches = Length.create(2, LengthUnit.INCH);
+    Length twoPointFiveCentimeters = Length.create(2.5, LengthUnit.CENTIMETER);
+    Length threeInches = Length.create(3, LengthUnit.INCH);
 
     assertEquals(twoInches.add(twoPointFiveCentimeters), threeInches);
   }
