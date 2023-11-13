@@ -1,6 +1,8 @@
 package com.tw.step.math.models;
 
-import com.tw.step.math.exceptions.InvalidMeasurementException;
+import com.tw.step.math.measurements.exceptions.InvalidMeasurementException;
+import com.tw.step.math.measurements.Length;
+import com.tw.step.math.measurements.LengthUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

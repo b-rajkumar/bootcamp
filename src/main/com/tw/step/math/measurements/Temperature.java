@@ -1,6 +1,6 @@
-package com.tw.step.math.models;
+package com.tw.step.math.measurements;
 
-import com.tw.step.math.exceptions.InvalidMeasurementException;
+import com.tw.step.math.measurements.exceptions.InvalidMeasurementException;
 
 import java.util.Objects;
 

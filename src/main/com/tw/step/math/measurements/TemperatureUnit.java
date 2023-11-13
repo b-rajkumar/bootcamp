@@ -1,4 +1,4 @@
-package com.tw.step.math.models;
+package com.tw.step.math.measurements;
 
 public enum TemperatureUnit {
   CELCIUS(1.8, 32), FARENHEIT(1, 0);

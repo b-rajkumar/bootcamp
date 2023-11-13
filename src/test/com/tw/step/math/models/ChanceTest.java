@@ -1,6 +1,7 @@
 package com.tw.step.math.models;
 
-import com.tw.step.math.exceptions.InvalidRangeException;
+import com.tw.step.math.probability.Chance;
+import com.tw.step.math.probability.exceptions.InvalidRangeException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

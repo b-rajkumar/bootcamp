@@ -1,4 +1,4 @@
-package com.tw.step.math.exceptions;
+package com.tw.step.math.probability.exceptions;
 
 public class InvalidRangeException extends Throwable {
   public final double value;

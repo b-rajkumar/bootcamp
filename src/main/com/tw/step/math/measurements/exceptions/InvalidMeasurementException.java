@@ -1,4 +1,4 @@
-package com.tw.step.math.exceptions;
+package com.tw.step.math.measurements.exceptions;
 
 public class InvalidMeasurementException extends Exception {
   public final double value;

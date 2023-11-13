@@ -1,7 +1,7 @@
 package com.tw.step.math.models;
 
-import com.tw.step.math.exceptions.InvalidDimensionsException;
-import com.tw.step.math.models.Rectangle;
+import com.tw.step.math.shapes.exceptions.InvalidDimensionsException;
+import com.tw.step.math.shapes.Rectangle;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

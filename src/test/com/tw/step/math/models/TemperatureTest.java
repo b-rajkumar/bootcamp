@@ -1,6 +1,8 @@
 package com.tw.step.math.models;
 
-import com.tw.step.math.exceptions.InvalidMeasurementException;
+import com.tw.step.math.measurements.exceptions.InvalidMeasurementException;
+import com.tw.step.math.measurements.Temperature;
+import com.tw.step.math.measurements.TemperatureUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

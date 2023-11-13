@@ -1,4 +1,4 @@
-package com.tw.step.math.models;
+package com.tw.step.math.measurements;
 
 public enum LengthUnit {
   FEET(304.8),

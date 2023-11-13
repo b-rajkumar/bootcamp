@@ -1,6 +1,6 @@
-package com.tw.step.math.models;
+package com.tw.step.math.probability;
 
-import com.tw.step.math.exceptions.InvalidRangeException;
+import com.tw.step.math.probability.exceptions.InvalidRangeException;
 
 import java.util.Objects;
 
