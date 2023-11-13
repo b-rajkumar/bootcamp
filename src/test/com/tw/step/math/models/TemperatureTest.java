@@ -14,11 +14,10 @@ public class TemperatureTest {
 
     assertEquals(_212F, _100C);
   }
-//
-//  @Test
-//  void shouldThrowExceptionForNegativeValues() {
-//    InvalidMeasurementException e = assertThrows(InvalidMeasurementException.class, () -> Temperature.create(-1, TempratureUnit.GALLON);
-//    assertEquals(e.value, -1);
-//  }
 
+  @Test
+  void shouldThrowExceptionForNegativeValues() {
+    InvalidMeasurementException e = assertThrows(InvalidMeasurementException.class, () -> Temperature.create(-1, TemperatureUnit.FARENHEIT));
+    assertEquals(e.value, -1);
+  }
 }
