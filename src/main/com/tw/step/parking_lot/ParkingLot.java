@@ -1,5 +1,7 @@
 package com.tw.step.parking_lot;
 
+import com.tw.step.parking_lot.exceptions.ParkingLotFullException;
+
 import java.util.ArrayList;
 
 public class ParkingLot {
@@ -12,8 +14,8 @@ public class ParkingLot {
     this.slots = new ArrayList<>(capacity);
   }
 
-  public boolean park(Car car) {
-    if (this.isFull()) return false;
+  public boolean park(Car car) throws ParkingLotFullException {
+    if (this.isFull()) throw new ParkingLotFullException(capacity);
     return this.slots.add(car);
   }
 
