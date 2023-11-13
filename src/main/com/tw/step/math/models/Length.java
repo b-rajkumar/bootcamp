@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Length {
   private final double value;
   private final LengthUnit unit;
-  private static final LengthUnit standardUnit = LengthUnit.INCH;
 
 
   private Length(double value, LengthUnit unit) {
@@ -42,7 +41,7 @@ public class Length {
     double v1 = this.unit.toStandard(this.value);
     double v2 = length.unit.toStandard(length.value);
 
-    return Length.create(v1 + v2, Length.standardUnit);
+    return Length.create(v1 + v2, this.unit.getStandard());
   }
 
 }

@@ -1,10 +1,10 @@
 package com.tw.step.math.models;
 
 import com.tw.step.math.exceptions.InvalidMeasurementException;
-import com.tw.step.math.exceptions.TypeMismatchException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LengthTest {
   @Test

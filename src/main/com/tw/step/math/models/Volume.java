@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Volume {
   private final double value;
   private final VolumeUnit unit;
-  private static final VolumeUnit standardUnit = VolumeUnit.LITER;
 
   public Volume(double value, VolumeUnit unit) {
     this.value = value;
@@ -41,7 +40,7 @@ public class Volume {
     double v1 = this.unit.toStandard(this.value);
     double v2 = volume.unit.toStandard(volume.value);
 
-    return Volume.create(v1 + v2, Volume.standardUnit);
+    return Volume.create(v1 + v2, this.unit.getStandard());
   }
 
 }
