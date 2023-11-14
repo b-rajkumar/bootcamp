@@ -5,13 +5,12 @@ import com.tw.step.parking_lot.exceptions.ParkingLotFullException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ParkingLot {
 
   private final int capacity;
   private final ArrayList<Car> slots;
-  private final HashMap<String, List<Consumer<ParkingLot>>> events = new HashMap<>();
+  private final HashMap<ParkingLotEvent, List<EventConsumer>> events = new HashMap<>();
 
   public ParkingLot(int capacity) {
     this.capacity = capacity;
@@ -22,23 +21,27 @@ public class ParkingLot {
     if (this.isFull()) throw new ParkingLotFullException(this.capacity);
     this.slots.add(car);
 
-    boolean areFullHandlersPresent = this.events.get("full") != null;
-    if (this.isFull() && areFullHandlersPresent) {
-      for (Consumer<ParkingLot> handler : this.events.get("full")) {
-        handler.accept(this);
-      }
-    }
+    if (this.isFull() && this.events.containsKey(ParkingLotEvent.FULL))
+      publishFullEvent();
 
     return true;
+  }
+
+  private void publishFullEvent() {
+    List<EventConsumer> eventConsumers = this.events.get(ParkingLotEvent.FULL);
+    for (EventConsumer eventConsumer : eventConsumers) {
+      ParkingLotFullEventConsumer consumer = (ParkingLotFullEventConsumer) eventConsumer;
+      consumer.onFull(ParkingLotEvent.FULL, 1);
+    }
   }
 
   public boolean isFull() {
     return this.slots.size() == this.capacity;
   }
 
-  public void on(String event, Consumer<ParkingLot> handler) {
-    this.events.putIfAbsent(event, new ArrayList<>());
-    List<Consumer<ParkingLot>> handlers = this.events.get(event);
-    handlers.add(handler);
+  public void addFullEventListener(ParkingLotFullEventConsumer consumer) {
+    this.events.putIfAbsent(ParkingLotEvent.FULL, new ArrayList<>());
+    List<EventConsumer> eventConsumers = this.events.get(ParkingLotEvent.FULL);
+    eventConsumers.add(consumer);
   }
 }
